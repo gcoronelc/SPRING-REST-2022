@@ -1,0 +1,3 @@
+Calcular el sueldo de un docente en función a las horas dictadas por mes.
+Si las horas dictadas en el mes son mayores a 60, recibe un bono de 15% de importe por sus horas dictadas.
+Si sus ingreso bruto super los 1500 Soles se le retiene el 8% de renta. 
