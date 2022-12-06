@@ -34,7 +34,7 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								RECURSOS </a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="javascript: fnListado();">Listado</a>
+								<a class="dropdown-item" href="javascript: cargarPagina('divWork','listado.html');">Listado</a>
 								<a class="dropdown-item" th:href="@{/cuenta/depositar}">Registrar deposito</a>
 								<a class="dropdown-item" th:href="@{/cuenta/retiro}">Registrar retiro</a>
 								<a class="dropdown-item" href="#">Registrar transferencia</a>
@@ -79,7 +79,7 @@
 	</header>
 
 	<!-- Contenido -->
-	<div class="container"></div>
+	<div class="container" id="divWork"></div>
 
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
