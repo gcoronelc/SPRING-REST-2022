@@ -1,12 +1,11 @@
-![DESARROLLO FULL STACK CON SPRING BOOT](https://raw.githubusercontent.com/gcoronelc/UNI-FIIS-SPRING-BOOT-01/main/Imagenes/portada.png)
+![DESARROLLO FULL STACK CON SPRING BOOT](https://raw.githubusercontent.com/gcoronelc/SPRING-REST-2022/main/Imagenes/portada.jpg)
 
-![CALENDARIO](https://raw.githubusercontent.com/gcoronelc/UNI-FIIS-SPRING-BOOT-01/main/Imagenes/Calendario.png)
 
 # DATOS GENERALES
 
 - Lugar: UNI - FIIS
-- Horario: Martes de 13 a 17 y Viernes de 08-12 Horas
-- Inicio: 11-OCT-2022
+- Horario: Martes y Viernes de 08 a 12 Horas
+- Inicio: Martes 29-NOV-2022
 - Duración: 48 Horas
 - Dirección: https://goo.gl/maps/ZY5zZ1LPUp7aK6g98
 

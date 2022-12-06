@@ -1,0 +1,4 @@
+
+function fnListado(){
+    alert("Hola");
+}
