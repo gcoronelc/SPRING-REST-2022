@@ -98,8 +98,38 @@
         });
 
 
-        function fnBtnConsultar3(){
-            
+        function fnBtnConsultar3() {
+            // Ocultado los div
+            document.getElementById("divData").style.display = 'none';
+            document.getElementById("divResultado").style.display = 'none';
+            document.getElementById("divError").style.display = 'none';
+            // Endpoint de la API y método que se va a usar para llamar
+            let id = document.getElementById("id").value;
+            let url = "https://jsonplaceholder.typicode.com/posts/" + id;
+            // La magia
+            fetch(url, {
+                method: "GET",
+                headers: { "Content-type": "application/json;charset=UTF-8" }
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json()
+                    } else {
+                        throw new Error(response.status);
+                    }
+                })
+                .then((objeto) => {
+                    console.log(objeto);
+                    document.getElementById("_id").innerHTML = objeto.id;
+                    document.getElementById("_UserId").innerHTML = objeto.userId;
+                    document.getElementById("_Title").innerHTML = objeto.title;
+                    document.getElementById("_Body").innerHTML = objeto.body;
+                    document.getElementById("divResultado").style.display = 'block';
+                })
+                .catch(err => {
+                    document.getElementById("_error").innerHTML = "Recurso no encontrado.";
+                    document.getElementById("divError").style.display = 'block';
+                });
         }
 
         // JavaScript puro
