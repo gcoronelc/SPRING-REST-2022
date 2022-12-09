@@ -1,0 +1,12 @@
+https://jsonplaceholder.typicode.com/
+
+https://app.getpostman.com/join-team?invite_code=9e46ca111e4c5cc21b855c9d64f1b13c
+
+https://ed.team/blog/las-mejores-apis-publicas-para-practicar
+
+
+
+Consumir API Rest
+---------------------------------------
+https://dev.to/vikingcodeblog/4-maneras-de-llamar-a-una-api-rest-con-javascript-2nhm
+
