@@ -11,15 +11,17 @@
 <body>
     <h1>Ver la consola</h1>
     <button type="button" id="btnProcesar">Procesar</button>
+    <button type="button" id="btnProcesar2">Procesar 2</button>
 
     <script src="js/axios.min.js"></script>
 
     <script>
         $(document).ready(function () {
-            let boton = document.getElementById("btnProcesar"); // Encuentra el elemento "p" en el sitio
+            let boton = document.getElementById("btnProcesar");
             boton.onclick = fnBtnProcesar; // Agrega función onclick al elemento
 
-
+            let boton2 = document.getElementById("btnProcesar2");
+            boton2.onclick = fnBtnProcesar2; // Agrega función onclick al elemento
         })
 
         function fnBtnProcesar(evento) {
@@ -38,6 +40,20 @@
                     console.log(data)
                 })
                 .catch(error => console.error(error));
+        }
+
+        function fnBtnProcesar2(evento) {
+            axios.interceptors.request.use(config => {
+                // Aquí podríamos hacer algo con la llamada antes de enviarla
+                console.log('Se ha enviado algo');
+                return config;
+            });
+
+            // llamada común
+            axios.get('https://pokeapi.co/api/v2/pokemon')
+                .then(response => {
+                    console.log(response.data);
+                });
         }
 
     </script>
