@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>CONSULTAR RECURSO</h1>
+
+    <div class="card" id="divData">
+        <div class="card-header">
+            ID DEL RECURSO
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group row">
+                    <label for="id" class="col-sm-2 col-form-label offset-sm-3">Recurso</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="id" placeholder="##">
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-primary" id="btnConsultar">Consultar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="card" id="divResultado">
+        <div class="card-header">
+            DATOS DEL RECURSO
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group row">
+                    <label for="num1" class="col-sm-2 col-form-label">ID</label>
+                    <div class="col-sm-10">
+                        <p id="_id"></p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="num2" class="col-sm-2 col-form-label">User ID</label>
+                    <div class="col-sm-10">
+                        <p id="_UserId"></p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="rptaSuma" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                        <p id="_Title"></p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="rptaProducto" class="col-sm-2 col-form-label">Body</label>
+                    <div class="col-sm-10">
+                        <p id="_Body"></p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="button" class="btn btn-primary" id="btnNuevo">Nueva consulta</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card" id="divError">
+        <div class="card-header">
+            ERROR
+        </div>
+        <div class="card-body">
+            <div class="form-group row">
+                <p id="_error" class="text-danger"></p>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="button" class="btn btn-primary" id="btnNuevo2">Nueva consulta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $(function () {
+            $("#divResultado").hide();
+            $("#divError").hide();
+            $("#btnConsultar").click(fnBtnConsultar3);
+            $("#btnNuevo").click(fnBtnNuevo);
+            $("#btnNuevo2").click(fnBtnNuevo);
+        });
+
+
+        function fnBtnConsultar3() {
+            // Ocultado los div
+            document.getElementById("divData").style.display = 'none';
+            document.getElementById("divResultado").style.display = 'none';
+            document.getElementById("divError").style.display = 'none';
+            // Endpoint de la API y método que se va a usar para llamar
+            let id = document.getElementById("id").value;
+            let url = "https://jsonplaceholder.typicode.com/posts/" + id;
+            // La magia
+            fetch(url, {
+                method: "GET",
+                headers: { "Content-type": "application/json;charset=UTF-8" }
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json()
+                    } else {
+                        throw new Error(response.status);
+                    }
+                })
+                .then((objeto) => {
+                    console.log(objeto);
+                    document.getElementById("_id").innerHTML = objeto.id;
+                    document.getElementById("_UserId").innerHTML = objeto.userId;
+                    document.getElementById("_Title").innerHTML = objeto.title;
+                    document.getElementById("_Body").innerHTML = objeto.body;
+                    document.getElementById("divResultado").style.display = 'block';
+                })
+                .catch(err => {
+                    document.getElementById("_error").innerHTML = "Recurso no encontrado.";
+                    document.getElementById("divError").style.display = 'block';
+                });
+        }
+
+        // JavaScript puro
+        function fnBtnConsultar2() {
+            // Ocultado los div
+            document.getElementById("divData").style.display = 'none';
+            document.getElementById("divResultado").style.display = 'none';
+            document.getElementById("divError").style.display = 'none';
+            // Creamos un nuevo XMLHttpRequest
+            var xhttp = new XMLHttpRequest();
+            // Esta es la función que se ejecutará al finalizar la llamada
+            xhttp.onreadystatechange = function () {
+                // Sin nada da error
+                if (this.readyState == 4 && this.status == 200) {
+                    // La respuesta, aunque sea JSON, viene en formato texto, por lo que tendremos que hace run parse
+                    let objeto = JSON.parse(this.responseText);
+                    console.log(objeto);
+                    document.getElementById("_id").innerHTML = objeto.id;
+                    document.getElementById("_UserId").innerHTML = objeto.userId;
+                    document.getElementById("_Title").innerHTML = objeto.title;
+                    document.getElementById("_Body").innerHTML = objeto.body;
+                    document.getElementById("divResultado").style.display = 'block';
+                }
+                if (this.readyState == 4 && this.status != 200) {
+                    document.getElementById("_error").innerHTML = "Recurso no encontrado.";
+                    document.getElementById("divError").style.display = 'block';
+                }
+            };
+            // Endpoint de la API y método que se va a usar para llamar
+            let id = document.getElementById("id").value;
+            let url = "https://jsonplaceholder.typicode.com/posts/" + id;
+            xhttp.open("GET", url, true);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            // Si quisieramos mandar parámetros a nuestra API, podríamos hacerlo desde el método send()
+            xhttp.send(null);
+        }
+
+        function fnBtnConsultar() {
+            // Datos
+            let id = $("#id").val();
+            let url = "https://jsonplaceholder.typicode.com/posts/" + id;
+            $.ajax({
+                type: "GET",
+                url: url,
+                //data: {},
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                processData: false,
+                success: function (objeto) {
+                    console.log("Ok.");
+                    $("#_id").html(objeto.id);
+                    $("#_UserId").html(objeto.userId);
+                    $("#_Title").html(objeto.title);
+                    $("#_Body").html(objeto.body);
+                    $("#divData").hide();
+                    $("#divResultado").show();
+                },
+                failure: function (response) {
+                    console.log("Falla: " + response.responseText);
+                },
+                error: function (response) {
+                    $("#_error").html("Recurso no encontrado");
+                    $("#divData").hide();
+                    $("#divError").show();
+                }
+            });
+        }
+
+        function fnBtnNuevo() {
+            $("#id").val("");
+            $("#divData").show();
+            $("#divResultado").hide();
+            $("#divError").hide();
+        }
+    </script>
+
+</body>
+
+</html>

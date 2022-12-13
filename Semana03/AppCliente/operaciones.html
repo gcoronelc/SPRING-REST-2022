@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>OPERACIONES ARITMETICAS</h1>
+
+    <div class="card" id="divData">
+        <div class="card-header">
+            Datos
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group row">
+                    <label for="num1" class="col-sm-2 col-form-label">Número 1</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="num1" placeholder="Número 1">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="num2" class="col-sm-2 col-form-label">Número 2</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="num2" placeholder="Número 2">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="button" class="btn btn-primary" id="btnProcesar">Procesar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="card" id="divResultado">
+        <div class="card-header">
+            Resultado
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group row">
+                    <label for="num1" class="col-sm-2 col-form-label">Número 1</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="rptaNum1" placeholder="Número 1" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="num2" class="col-sm-2 col-form-label">Número 2</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="rptaNum2" placeholder="Número 2" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="rptaSuma" class="col-sm-2 col-form-label">Suma</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="rptaSuma" placeholder="Suma" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="rptaProducto" class="col-sm-2 col-form-label">Producto</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="rptaProducto" placeholder="Producto" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="button" class="btn btn-primary" id="btnNuevo">Nuevo</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        $(function () {
+            $("#divResultado").hide();
+            $("#btnProcesar").click(fnBtnProcesar);
+            $("#btnNuevo").click(fnBtnNuevo);
+        });
+
+
+        function fnBtnProcesar() {
+            // Datos
+            let num1 = $("#num1").val();
+            let num2 = $("#num2").val();
+            let url = "http://localhost:8080/operar"
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: JSON.stringify({ "num1": num1, "num2": num2 }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                processData: false,
+                success: function (objeto) {
+                    console.log("Ok.");
+                    $("#rptaNum1").val(objeto.num1);
+                    $("#rptaNum2").val(objeto.num2);
+                    $("#rptaSuma").val(objeto.suma);
+                    $("#rptaProducto").val(objeto.producto);
+                    $("#divData").hide();
+                    $("#divResultado").show();
+                },
+                failure: function (response) {
+                    console.log("Falla: " + response.responseText);
+                },
+                error: function (response) {
+                    console.log("Error: " + response.responseText);
+                }
+            });
+        }
+
+        function fnBtnNuevo() {
+            $("#num1").val("");
+            $("#num2").val("");
+            $("#divData").show();
+            $("#divResultado").hide();
+        }
+    </script>
+</body>
+
+</html>

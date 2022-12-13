@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Ver la consola</h1>
+    <button type="button" id="btnProcesar">Procesar</button>
+
+    <script src="js/axios.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            let boton = document.getElementById("btnProcesar"); // Encuentra el elemento "p" en el sitio
+            boton.onclick = fnBtnProcesar; // Agrega función onclick al elemento
+
+
+        })
+
+        function fnBtnProcesar(evento) {
+            // axios
+            axios.get('https://pokeapi.co/api/v2/pokemon')
+                .then(response => {
+                    console.log(response.data); // response.data ya es un JSON
+                }, error => {
+                    console.log(error);
+                });
+
+            // fetch()
+            fetch('https://pokeapi.co/api/v2/pokemon')
+                .then(response => response.json())    // a fetch le llega una respuesta en string que tiene que ser parseada a JSON
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => console.error(error));
+        }
+
+    </script>
+
+</body>
+
+</html>
