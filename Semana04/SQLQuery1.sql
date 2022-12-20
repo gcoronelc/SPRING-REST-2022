@@ -8,6 +8,9 @@ go
 select * from proyecto;
 go
 
+select * from estudiante;
+go
+
 insert into proyecto values('proyecto 1',1);
 insert into proyecto values('proyecto 2',1);
 insert into proyecto values('proyecto 3',1);
