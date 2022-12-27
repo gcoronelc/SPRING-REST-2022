@@ -1,0 +1,23 @@
+SpringSecurityDemo1
+-----------------------------------------------------
+Configuración por defecto.
+
+SpringSecurityDemo2
+-----------------------------------------------------
+Usuario personalizado.
+
+SpringSecurityDemo3
+-----------------------------------------------------
+Autorizaciones a rutas especificas.
+
+SpringSecurityDemo4
+-----------------------------------------------------
+Usuarios en memoria.
+
+SpringSecurityDemo5
+-----------------------------------------------------
+Formulario de logueo personalizado.
+Finalizar sesión.
+
+
+

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>APP DEMO</title>
+</head>
+<body style="text-align: center;">
+	<h1>Bienvenido al ejemplo de Spring Boot Security.</h1>
+	<h2 th:text="${usuario}"></h2>
+	<h2 th:text="${roles}"></h2>
+	<a href="/logout">Salir</a>
+	<a href="/demo/saludo">Saludo</a>
+	<a href="/demo/proceso">Proceso</a>
+</body>
+</html>
