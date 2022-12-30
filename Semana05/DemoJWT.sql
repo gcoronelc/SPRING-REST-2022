@@ -1,7 +1,7 @@
-create database demojwt;
+create database DEMOJWT;
 go
 
-use demojwt;
+use DEMOJWT;
 go
 
 -- TABLA: CONTACTO
@@ -54,16 +54,15 @@ create table usuario(
 );
 
 
--- Datos
-insert into usuario(idusuario,nombre,email,password) values(
-
-
 -- SET IDENTITY_INSERT to ON
 SET IDENTITY_INSERT dbo.usuario ON;  
 GO
 
 
+-- Datos
+--insert into usuario(idusuario,nombre,email,password) values(
+
 
 -- SET IDENTITY_INSERT to OFF
-SET IDENTITY_INSERT dbo.contacto OFF;  
+SET IDENTITY_INSERT dbo.usuario OFF;  
 GO
